@@ -1,0 +1,45 @@
+<h1 class="center display-5">Reimbursement History</h1>
+<div id="history-box">	
+<div class="row justify-content-around" style="padding: 5px;">
+		<div class="col-11 round-border">
+			<table id="history-table" class="display compact">
+				<thead>
+					<tr>
+						<th>Employee</th>
+						<th>Submit Date</th>
+						<th>Resolve Date</th>
+						<th>Resolver</th>
+						<th>Type</th>
+						<th>Amount</th>
+						<th>Description</th>
+						<th>Status</th>
+					</tr>
+				</thead>
+				<tbody id="history-body">
+					<!-- history data to be built -->
+				</tbody>
+				<tfoot>
+					<tr>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+					</tr>
+				</tfoot>
+			</table>
+			<div id="history-total" align="center"></div>
+		</div>
+	</div>
+	
+</div>
+
+<script>
+$(document).ready( function () {
+	checkHistoryTable();
+} );
+
+</script>

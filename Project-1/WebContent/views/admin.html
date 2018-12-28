@@ -1,0 +1,84 @@
+<h1 class="center display-5">Employee Maintenance</h1>
+<div id="admin-box">
+	<div class="row justify-content-around" style="padding: 5px;">
+		<div class="col-11 round-border">
+			<form id="employee-form ">
+				<div class="row form-group">
+					<div class="col">
+						<label><b><span class="required">* </span>First Name</b></label> <input
+							type="text" class="form-control form-control-sm" id="first-name-form"
+							placeholder="First Name" >
+					</div>
+					<div class="col">
+						<label><b><span class="required">* </span>Last Name</b></label> <input
+							type="text" class="form-control form-control-sm" id="last-name-form"
+							placeholder="Last Name">
+					</div>
+					<div class="col">
+						<label><b><span class="required">* </span>User Name</b></label> <input
+							type="text" class="form-control form-control-sm" id="user-name-form"
+							placeholder="User Name">
+					</div>
+					<div class="col">
+						<label><b><span class="required">* </span>Password</b></label> <input
+							type="text" class="form-control form-control-sm" id="password-form"
+							placeholder="Password">
+					</div>
+					<div class="col">
+						<label><b><span class="required">* </span>User Email</b></label> <input
+							type="text" class="form-control form-control-sm" id="email-form"
+							placeholder="User Email">
+					</div>
+					<div class="col">
+						<label><b><span class="required">* </span>User Role</b></label> <select
+							class="form-control form-control-sm" id="role-dropdown">
+						</select>
+					</div>
+				</div>
+				<input id="hidden-employee-id" type="number" style="display: none; ">
+				<input id="hidden-employee-idx" type="number" style="display: none; ">
+
+				<button type="button" id="employee-submit" class="btn btn-outline-primary" style="display: none;">Submit</button>
+				<button type="button" id="employee-new" class="btn btn-outline-primary">New</button>
+				<button type="button" id="employee-cancel" class="btn btn-outline-primary" style="display: none;">Cancel</button>
+			</form>
+			<h6 style="text-align: right">
+				<span class="required">* </span>= Required.
+			</h6>
+		</div>
+	</div>
+	<div class="row justify-content-around" style="padding: 5px;">
+		<div class="col-11 round-border">
+			<table id="employees-table" class="display compact table-bordered hover">
+				<thead>
+					<tr>
+						<th>Employee ID</th>
+						<th>Last Name</th>
+						<th>First Name</th>
+						<th>User Name</th>
+						<th>Password</th>
+						<th>Email</th>
+						<th>Role</th>
+						<th>Role_id</th>						
+					</tr>
+				</thead>
+				<tbody id="employees-body">
+					<!-- Employee data to be built -->
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<script>
+var empTable;
+$(document).ready( function () {
+    
+	checkEmpTable();
+	
+} );
+
+$('#employee-new').on('click', populateEmployeeNew);
+$('#employee-cancel').on('click', populateEmployeeOff);
+$('#employee-submit').on('click', employeeSubmit);
+</script>

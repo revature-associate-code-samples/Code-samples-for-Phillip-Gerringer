@@ -1,0 +1,14 @@
+<div>
+	<img class="center" src="images/logo6.png" style="width: 300px;" alt="">
+	<h1 class="display-4 text-center" >Expense Reimbursement System</h1>
+	<form class="form-inline my-2 my-lg-0 justify-content-md-center" action="login" method="GET">
+		<input id="userNameInput" type="text" name="username" class="form-control col-3" placeholder="Username"> 
+		<input id="passwordInput" type="password" name="password" class="form-control col-3" placeholder="Password">
+		<div class="input-group-append">
+			<button class="btn btn-outline-primary btn-md" id="loginBtn" type="button">Login</button>
+		</div>
+	</form>
+</div>
+<script>
+$('#loginBtn').on('click', doLogin);
+</script>

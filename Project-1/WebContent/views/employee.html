@@ -1,0 +1,80 @@
+<h1 class="center display-5">Reimbursement Requests</h1>
+<div id="selection-box" class="row justify-content-around"
+	style="padding: 5px;">
+	<div class="col-6 round-border">
+		<table id="reimb-table" class="table table-striped table-bordered compact hover">
+			<thead>
+				<tr>
+					<th>Reimbursement ID</th>
+					<th>Submit Date</th>
+					<th>Type</th>
+					<th>Amount</th>
+					<th>Description</th>
+					<th>Status</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- auto generated -->
+			</tbody>
+		</table>
+	</div>
+	<div id="work-box" class="col-5 round-border">
+		<p id="status_info"></p>
+		<form id="reimb-submission">
+			<div class="row form-group">
+				<div class="col col-md-6">
+					<label for="type-dropdown"><b><span class="required">*
+						</span>Reimbursement Type</b></label> <select class="form-control form-control-sm"
+						id="type-dropdown">
+					</select>
+				</div>
+				<div class="col col-md-6">
+					<div class="form-group">
+						<label for="reimb-amount-form"><b><span
+								class="required">* </span>Amount</b></label>
+						<div class="input-group">
+							<span class="input-group-text">$</span> <input type="number"
+								step='0.01' min="0" class="form-control currency"
+								data-number-to-fixed="2" data-number-stepfactor="100"
+								id="reimb-amount-form" aria-describedby="amountHelp"
+								placeholder="Amount">
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row form-group">
+				<div class="col col">
+					<div class="form-group">
+						<label><b>Description</b></label>
+						<textarea class="form-control" id="detail-form"
+							aria-describedby="detailHelp" placeholder="Detail"></textarea>
+					</div>
+				</div>
+			</div>
+
+			<input id="hidden-reimbursement-id" type="number" style="display: none;">
+			<input id="hidden-status-id" type="number" style="display: none;">
+			<input id="hidden-reimbursement-idx" type="number"  style="display: none;">
+
+			<button type="button" id="request-submit" class="btn btn-outline-primary" style="display: none;">Submit</button>
+				<button type="button" id="request-new" class="btn btn-outline-primary">New</button>
+				<button type="button" id="request-cancel" class="btn btn-outline-primary" style="display: none;">Cancel</button>
+		</form>
+		<h6 style="text-align: right">
+			<span class="required">* </span>= Required.
+		</h6>
+	</div>
+</div>
+
+<script>
+
+$(document).ready( function () {
+    
+	checkReimbTable();
+} );
+
+$('#request-new').on('click', populateRequestNew);
+$('#request-cancel').on('click', populateRequestOff);
+$('#request-submit').on('click', RequestSubmit);
+</script>
