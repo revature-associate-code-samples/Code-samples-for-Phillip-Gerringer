@@ -1,6 +1,6 @@
 # Employee Reimbursement Application
 
- Specifications:  
+ Specifications:  https://github.com/revature-associate-code-samples/Code-samples-for-Phillip-Gerringer/blob/master/Project-1/Project1.pdf
  Repository Link: https://github.com/1810-oct22-java/1810-oct22/tree/Phil_Gerringer/Phil_Gerringer_Code/Project1
  
 ### Requirements
