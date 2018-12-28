@@ -1,0 +1,140 @@
+@import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+
+img.poster {
+    height: 100px;
+    border-radius: 15px;
+    border: 1px solid;
+}
+
+.round-border {
+	border-radius: 15px;
+	border: 1px solid;
+	padding: 15px 15px 15px 15px;
+    background-color: rgb(0, 0, 0, 0.8);
+    box-shadow: 7px 7px 5px rgba(0, 0, 0, 0.60);
+}
+
+p, h2, h3, h4, h5, h6, div, a, li {
+    font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
+    color: rgb(145, 145, 145);
+}
+
+.title {
+    font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
+    font-weight: bold;
+    color: white;
+    padding: 0px 0px 0px 0px;
+    line-height: 70%;
+    font-size: 36px;
+}
+
+table, tr, th, td {
+    font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
+    color: rgb(145, 145, 145);
+    width: 100%;
+}
+
+td.header-poster {
+    padding: 0px 0px, 0px, 20px;
+    width: 100px; 
+}
+
+td.header-meta {
+    width: 1600px; 
+}
+
+.tag-line {
+    padding: 5px 0px 15px 0px;
+    font-style: italic;
+    font-size: 12px;
+}
+
+.body {
+    padding: 20px 0px 0px 0px;
+}
+
+.review {
+    color:white;
+    padding: 20px 0px 0px 0px;
+}
+
+.username {
+    color:white;
+    font-size: 24px;
+}
+
+.review_date {
+    font-style: italic;
+    font-size: 12px;
+}
+
+.join_date {
+    font-style: italic;
+    font-size: 12px;
+}
+
+.review_header {
+    border: 2px solid;
+    border-bottom-color: rgb(145, 145, 145);
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-left-width: 0px;
+}
+
+.review_footer {
+    border: 1px solid;
+    border-bottom-color: rgb(65, 65, 65);
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-left-width: 0px;
+}
+
+span.on {
+    font-size: 20px;
+    color:gold; 
+}
+
+span.off {
+    font-size: 20px; 
+    
+}
+
+.text-right {
+    text-align: right;
+}
+
+.rate {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}

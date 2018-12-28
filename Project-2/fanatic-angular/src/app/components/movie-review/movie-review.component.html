@@ -1,0 +1,140 @@
+<div *ngIf="this.movie">
+<div *ngIf="this.ratings">
+    <div class="body">
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-12 round-border">
+                    <div class="row">
+                        <div class="col-1">
+                            <img class="poster" id="movie-poster" src='{{this.movie.poster_path}}'>
+                            
+                        </div>
+                        <div class="col">
+                            <a routerLink="/movie/{{this.movie.id}}"><span class="title">{{this.movie.title}}</span></a>
+                            <span>({{this.date_convert(this.movie.release_date)}})</span>
+                            <h6 class="tag-line">{{this.movie.tagline}}</h6>
+                            <h5 class="meta-data">{{this.ratings.Rated}}&nbsp;&bull;&nbsp;
+                                {{this.time_convert(this.movie.runtime)}}&nbsp;&bull;&nbsp;
+                                {{this.ratings.Genre}}</h5>
+                        </div>
+                        <div class="col-auto">
+                            <span *ngIf="this.loginService.isLoggedIn()">
+                                <span *ngIf="!this.alreadyReviewed">
+                                    <a routerLink="#" data-toggle="modal" data-target="#reviewModal">Add a Review</a>
+                                </span>
+                            </span>        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div *ngIf="this.dataSource" class="body">
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-12 round-border">
+                    <ul>
+                    <li *ngFor="let review of this.dataSource" class='review'>
+                        <div class="container review-container">
+                            <div class="row justify-content-between review_header">
+                                <div class="col-3">
+                                    <a routerLink="/user/{{this.review.username}}">
+                                    <span class="username">{{ this.review.username }}</span></a> <span class="join_date">({{ this.review.join_date }})</span>    
+                                </div>
+                                <div class="col-3 text-right">
+                                    {{ this.review.review_date }}&nbsp;
+                                    <span *ngIf="this.review.rating >= 1" class="fa fa-star on"></span>
+                                    <span *ngIf="this.review.rating >= 2" class="fa fa-star on"></span>
+                                    <span *ngIf="this.review.rating >= 3" class="fa fa-star on"></span>
+                                    <span *ngIf="this.review.rating >= 4" class="fa fa-star on"></span>
+                                    <span *ngIf="this.review.rating >= 5" class="fa fa-star on"></span>
+                                    <span *ngIf="this.review.rating < 1" class="fa fa-star off"></span>
+                                    <span *ngIf="this.review.rating < 2" class="fa fa-star off"></span>
+                                    <span *ngIf="this.review.rating < 3" class="fa fa-star off"></span>
+                                    <span *ngIf="this.review.rating < 4" class="fa fa-star off"></span>
+                                    <span *ngIf="this.review.rating < 5" class="fa fa-star off"></span>
+                                </div>
+                            </div>
+                            <div class="row justify-content-md-center">
+                                <div class="col-12">
+                                    <p>{{ this.review.review }}</p>
+                                </div>
+                            </div>
+                            <div class="row justify-content-md-center">
+                                <div class="col-12" *ngIf="this.loginService.isLoggedIn()">
+                                    <span class="off" *ngIf="this.review.already_reviewed">
+                                        <i class="fa fa-thumbs-up">&nbsp;{{ review.thumbs_up }}</i>&nbsp;&nbsp;
+                                        <i class="fa fa-thumbs-down">&nbsp;{{ review.thumbs_down }}</i>
+                                    </span>
+                                    <span *ngIf="!this.review.already_reviewed">
+                                        <span class="off" *ngIf="review.username == this.loginService.getUserName()">
+                                            <i class="fa fa-thumbs-up">&nbsp;{{ review.thumbs_up }}</i>&nbsp;&nbsp;
+                                            <i class="fa fa-thumbs-down">&nbsp;{{ review.thumbs_down }}</i>
+                                        </span>
+                                        <span class="on" *ngIf="review.username != this.loginService.getUserName()">
+                                            <button type="button" (click)="postUp(review.id)" class="btn btn-light"><i class="fa fa-thumbs-up">&nbsp;{{ review.thumbs_up }}</i></button>&nbsp;&nbsp;
+                                            <button type="button" (click)="postDown(review.id)" class="btn btn-light"><i class="fa fa-thumbs-down">&nbsp;{{ review.thumbs_down }}</i></button>
+                                        </span>
+                                    </span>
+                                </div>
+                                <div class="col-12" *ngIf="!this.loginService.isLoggedIn()">
+                                    <i class="fa fa-thumbs-up">&nbsp;{{ review.thumbs_up }}</i>&nbsp;&nbsp;
+                                    <i class="fa fa-thumbs-down">&nbsp;{{ review.thumbs_down }}</i>
+                                </div>
+                            </div>
+                            <div class="row justify-content-between review_footer"></div>
+                        </div>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Modal -->
+<div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add a Review - <b><i>{{ this.loginService.getUserName() }}</i></b></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <table>
+                    <tr>
+                        <td class="header-poster"><img class="poster" id="movie-poster" src='{{this.movie.poster_path}}'></td>
+                        <td class="header-meta">
+                            {{this.movie.title}}
+                            <span>({{this.date_convert(this.movie.release_date)}})</span>
+                            <h6 class="tag-line">{{this.movie.tagline}}</h6>
+                        </td>
+                    </tr>
+                </table>
+                <div class="rate">
+                        <input type="radio" id="star5" name="rate" value="5" (click)="this.add_rating=5"/>
+                        <label for="star5" title="5 stars">5 stars</label>
+                        <input type="radio" id="star4" name="rate" value="4" (click)="this.add_rating=4"/>
+                        <label for="star4" title="4 stars">4 stars</label>
+                        <input type="radio" id="star3" name="rate" value="3" (click)="this.add_rating=3"/>
+                        <label for="star3" title="3 stars">3 stars</label>
+                        <input type="radio" id="star2" name="rate" value="2" (click)="this.add_rating=2"/>
+                        <label for="star2" title="2 stars">2 stars</label>
+                        <input type="radio" id="star1" name="rate" value="1" (click)="this.add_rating=1" />
+                        <label for="star1" title="1 stars">1 star</label>
+                </div>
+                <div class="input-group">
+                    <textarea class="form-control" aria-label="With textarea" [(ngModel)]="this.add_review"></textarea>
+                </div>
+            </div>
+        
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="submit()">Submit</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" #cancelBtn>Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+</div>

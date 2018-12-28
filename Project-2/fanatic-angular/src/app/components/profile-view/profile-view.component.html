@@ -1,0 +1,85 @@
+<br>
+<div class = "container emp-profile">
+  <div class="jumbotron" class="row justify-content-md-center rounded" id="jum">
+    <div class="col-1"></div>
+  <div class="col-3">
+      <br>
+      <div class="center">
+      <img src="/assets/userprof.png" width="120" height="120"/>
+      </div>
+  </div>
+  <div class="col-8">
+    
+    <h3 class="display-4" align= "right" *ngIf="user">{{this.user.firstname}} {{this.user.lastname}}</h3>
+    <hr color="white">
+    <div class="row">
+        <div class="col-12">
+          <div class="row">
+            <div class="col-6">
+              <label>Username</label>
+            </div>
+            <div class = "col-6" *ngIf="user">
+              <p>{{this.user.username}}</p>
+            </div>
+            <div class="col-6" *ngIf="user">
+              <label>Password</label>
+            </div>
+            <div class="col-6">
+              <p>{{this.user.password}}</p>
+            </div>
+            <div class="col-6">
+              <label>Firstname</label>
+            </div>
+            <div class="col-6" *ngIf="user">
+              <p>{{this.user.firstname}}</p>
+            </div>
+            <div class="col-6">
+              <label>Lastname</label>
+            </div>
+            <div class="col-6" *ngIf="user">
+              <p>{{this.user.lastname}}</p>
+            </div>
+            <div class="col-6">
+              <label>Email</label>
+            </div>
+            <div class="col-6" *ngIf="user">
+              <p>{{this.user.email}}</p>
+            </div>
+            <div class="col-6">
+              <label>Your Movie Fanatics Score</label>
+            </div>
+            <div class="col-6" *ngIf="user">
+                <span *ngIf="this.score >= .20" class="fa fa-star on"></span>
+                <span *ngIf="this.score >= .40" class="fa fa-star on"></span>
+                <span *ngIf="this.score >= .60" class="fa fa-star on"></span>
+                <span *ngIf="this.score >= .80" class="fa fa-star on"></span>
+                <span *ngIf="this.score >= 1.00" class="fa fa-star on"></span>
+                <span *ngIf="this.score < .20" class="fa fa-star off"></span>
+                <span *ngIf="this.score < .40" class="fa fa-star off"></span>
+                <span *ngIf="this.score < .60" class="fa fa-star off"></span>
+                <span *ngIf="this.score < .80" class="fa fa-star off"></span>
+                <span *ngIf="this.score < 1.00" class="fa fa-star off"></span>
+                &nbsp;{{this.score | percent}}
+            </div>
+            <div class="col-6" *ngIf="this.reviewCount">
+              <label>Number of Reviews</label>
+            </div>
+            <div class="col-6" *ngIf="this.reviewCount">
+              {{ this.reviewCount }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-1"></div>
+  </div>
+  <br>
+<div class="row">
+  <div class = "jumbotron col-12 text-center" id="jum">
+    <app-favorite-movies></app-favorite-movies>
+  </div>
+</div>
+    
+
+</div>
+

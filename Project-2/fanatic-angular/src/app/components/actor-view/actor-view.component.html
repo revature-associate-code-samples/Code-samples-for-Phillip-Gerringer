@@ -1,0 +1,50 @@
+<div *ngIf="this.actor">
+
+<div id = "bg" class="jumbotron jumbotron-fluid"  style = "background-image: url('https://cdn.hipwallpaper.com/i/68/37/cjLsNC.jpg'); 
+background-repeat: no-repeat; background-size: cover; background-position: center;">
+  <div class="container">
+    <div class="row justify-content-sm" >
+      <div class="col-6" id = "pic">
+        <img class="w3-card-4" src="{{this.actor.profile_path}}" id = 'act'>
+      </div>
+      <div class="col-6 round-border" id = "actorstats">
+        <div id = "cb">
+        <h1 style = "background-image: linear-gradient(rgb(197, 202, 211), rgb(121, 128, 146)); padding: 10px; border-radius: 2px 2px 20px 20px;
+         box-shadow: 3px 3px 5px rgb(56, 55, 55); color: white;">{{this.actor.name}}</h1>
+        <hr class="line-break">
+        <div [ngSwitch]="this.actor.gender">
+          <h6 id = 'gender' *ngSwitchCase="1" >Gender: <small>Female</small></h6>
+          <h6 id = 'gender' *ngSwitchCase="2" >Gender: <small>Male</small></h6>
+        </div>
+
+        <h6 id = 'birth'>Birth: <small>{{this.actor.birthday}}</small></h6>
+        <h6 id = 'place_of_birth'>Place of Birth: <small>{{this.actor.place_of_birth}}</small></h6>
+        <h6 id = 'popularity'>Popularity: <small>{{this.actor.popularity}}</small></h6>
+        <br class="line-break">
+        <p id = 'biography'>{{this.actor.biography}}</p>
+      </div>
+    </div>
+    </div>
+  </div>
+
+<br>
+<h2 style="text-align: center">Movies with {{this.actor.name}}</h2>
+
+  <div *ngIf="this.actMovieArray" class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row">
+            <div *ngFor="let movie of this.actMovieArray" class="col-md-2" style="padding-bottom: 20px">
+              <div class="card">
+                <a routerLink="/movie/{{movie.id}}"><img class="card-img-top rounded" src='{{movie.Poster}}' /></a>
+                <div class="card-block">
+                  <h5 class="card-title" style="text-align: center">
+                    {{movie.title}}
+                  </h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

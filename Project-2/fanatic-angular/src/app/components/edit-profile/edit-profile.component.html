@@ -1,0 +1,30 @@
+<br>
+<div class="container">
+  <div class="jumbotron" id = "jum">
+    <h3 class = "display-4" align="center">Sign Up</h3>
+        <div class="center-me">
+
+                <div class="row">
+                        <input type="text" [(ngModel)]="user.username" name="username" class="Tele" placeholder="Username">
+                    </div>
+                <div class="row">
+                    <input type="password" [(ngModel)]="user.password" name="password" class="Tele" placeholder="Password">
+                </div>
+                <div class="row">
+                    <input type="text" [(ngModel)]="user.email"name="email" class="Email" placeholder="Email">
+                </div>
+                <div class="row">
+                    <input type="text" [(ngModel)]="user.firstname"name="firstname" class="Address" placeholder="Firstname">
+                    
+                </div>
+                <div class="row">
+                    <input type="text" [(ngModel)]="user.lastname" name="lastname" class="Address" placeholder="Lastname">
+                </div>
+                <div class="row">
+                <button type="submit" (click)="submitNewUser()" value="Add" name="submit">Submit</button>
+                </div>
+            </div>
+  </div>
+  
+  
+</div>

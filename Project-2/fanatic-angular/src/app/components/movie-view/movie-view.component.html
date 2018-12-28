@@ -1,0 +1,113 @@
+<div *ngIf="this.movie">
+<div *ngIf="this.ratings">
+       <!-- class="jumbotron jumbotron-fluid" -->
+<div class="body" [ngStyle]="this.getBackground()">
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-4">
+                <img class="poster" id="movie-poster" src='{{this.movie.poster_path}}'>
+            </div>
+            <div class="col-8 round-border">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <span class="title">{{this.movie.title}}</span>
+                                <span>({{this.date_convert(this.movie.release_date)}})</span>
+                            <h6 *ngIf="this.movie.tagline != null" class="tag-line">{{this.movie.tagline}}</h6>
+                        </div>
+                        <div class="col-auto" *ngIf="this.ratings">
+                            <table> 
+                                <tr class='ratings-header'> 
+                                    <th *ngIf="this.ratings.Metascore != 'N/A'">
+                                        <span *ngIf="this.ratings.Metascore">
+                                            <a routerLink="https://www.metacritic.com">Metacritic</a>
+                                        </span>
+                                    </th> 
+                                    <th *ngIf="this.ratings.imdbRating != 'N/A'">
+                                        <span *ngIf="this.ratings.imdbRating">
+                                            <a routerLink="https://www.imdb.com">IMDB</a>
+                                    </span>
+                                    </th> 
+                                    <th *ngIf="this.ratings.RottenTomatoes != null">
+                                        <span *ngIf="this.ratings.RottenTomatoes">
+                                            <a routerLink="https://www.rottentomatoes.com">Rotten<br>Tomatoes</a>
+                                        </span>
+                                    </th> 
+                                </tr> 
+                                <tr class='ratings-detail'> 
+                                    <td *ngIf="this.ratings.Metascore != 'N/A'">
+                                        <span *ngIf="this.ratings.Metascore">
+                                            {{this.ratings.Metascore}}
+                                        </span>
+                                    </td>
+                                    <td *ngIf="this.ratings.imdbRating != 'N/A'">
+                                        <span *ngIf="this.ratings.imdbRating">
+                                            {{this.ratings.imdbRating}}<span class="tag-line">/10</span>
+                                        </span>
+                                    </td>
+                                    <td *ngIf="this.ratings.RottenTomatoes != null">
+                                        <span *ngIf="this.ratings.RottenTomatoes">
+                                            {{this.ratings.RottenTomatoes}}
+                                        </span>
+                                    </td>
+                                </tr> 
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <h5 class="meta-data">{{this.ratings.Rated}}&nbsp;&bull;&nbsp;
+                                    {{this.time_convert(this.movie.runtime)}}&nbsp;&bull;&nbsp;
+                                    {{this.ratings.Genre}}</h5>
+                        </div>
+                        <div class="col-auto" *ngIf="this.num_of_reviews > -1">
+                            <span *ngIf="this.ratings.MovieFanatic >= 1" class="fa fa-star on"></span>
+                            <span *ngIf="this.ratings.MovieFanatic >= 2" class="fa fa-star on"></span>
+                            <span *ngIf="this.ratings.MovieFanatic >= 3" class="fa fa-star on"></span>
+                            <span *ngIf="this.ratings.MovieFanatic >= 4" class="fa fa-star on"></span>
+                            <span *ngIf="this.ratings.MovieFanatic >= 5" class="fa fa-star on"></span>
+                            <span *ngIf="this.ratings.MovieFanatic < 1" class="fa fa-star off"></span>
+                            <span *ngIf="this.ratings.MovieFanatic < 2" class="fa fa-star off"></span>
+                            <span *ngIf="this.ratings.MovieFanatic < 3" class="fa fa-star off"></span>
+                            <span *ngIf="this.ratings.MovieFanatic < 4" class="fa fa-star off"></span>
+                            <span *ngIf="this.ratings.MovieFanatic < 5" class="fa fa-star off"></span>
+                            <span>&nbsp;{{ this.num_of_reviews }}<br>
+                                <a routerLink="/movie/review/{{this.movie.id}}">Click to see Reviews</a>
+                            </span>
+                        </div>
+                    </div>
+                <div>
+                    <div *ngIf="this.loginService.isLoggedIn()"> 
+                        <div *ngIf="this.isFavorite">
+                            <i class="fa fa-check-circle"></i>&nbsp;One of your Favorites
+                        </div>
+                        <div *ngIf="!this.isFavorite">
+                                <button type="button" (click)="addFavorite()" class="btn btn-light">Add Movie as a Favorite</button>
+                        </div>
+                    </div>
+                <hr class="line-break">
+                <p>{{this.movie.overview}}</p>
+                <h6><span class="category">Directed by: 
+                    <span *ngFor="let d of this.directorList">
+                        <span *ngIf="this.directorList[0].id != d.id">&nbsp;&bull;&nbsp;</span>
+                        <a routerLink="/actor/{{d.id}}">{{d.name}}</a></span>
+                    </span>
+                </h6>
+                <h6><span class="category">Produced by: 
+                    <span *ngFor="let p of this.producerList">
+                        <span *ngIf="this.producerList[0].id != p.id">&nbsp;&bull;&nbsp;</span>
+                        <a routerLink="/actor/{{p.id}}">{{p.name}}</a></span>
+                    </span>    
+                </h6>  
+                <h6><span class="category">Budget: </span>{{this.movie.budget | currency }}</h6>
+                <div>
+                    <h6 class="category">Cast:</h6>
+                    <span *ngFor="let c of this.cast">
+                        <span *ngIf="this.cast[0].id != c.id">&nbsp;&bull;&nbsp;</span>
+                        <a routerLink="/actor/{{c.id}}">{{c.name}}</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
