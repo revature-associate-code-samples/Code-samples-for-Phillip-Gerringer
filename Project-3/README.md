@@ -3,6 +3,8 @@ Caliber is a performance management suite to collect and analyze evaluations of 
 
 * Microservice/Spring Boot code: /caliber-spring
 
+* Repository:  https://github.com/revaturelabs/caliber-quality-audit-service
+
 ## Roles / Responsibilities
 * Served as Team Lead for a 6 person team.
 * Managed the scrum process for the team.
