@@ -15,8 +15,11 @@ import org.springframework.test.context.junit4.SpringRunner;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = AuditServiceApplication.class)
-public class AuditServiceControllerTest {
+public class ApplicationTest {
 
+	/* (non-Javadoc)
+	 * @see junit.framework.TestCase#setUp()
+	 */
 	@Before
 	public void setUp() throws Exception {
 		
